@@ -31,7 +31,7 @@ public class UserController {
     //users/{userId}
     @ApiOperation(value = "사용자 정보 수정", notes = "사용자 정보 수정")
     @ExceptionHandler(NoFileException.class)
-    @PutMapping(value = "/users", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PatchMapping(value = "/users", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> updateUserInfo(@CookieValue(value = JwtProperties.ACCESS_TOKEN) String token,
                                             @RequestPart(value = "multipartFile", required = false) MultipartFile multipartFile,
                                             @RequestPart(required = false) String nickname) throws IOException {

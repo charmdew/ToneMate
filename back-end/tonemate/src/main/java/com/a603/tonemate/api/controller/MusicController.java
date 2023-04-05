@@ -61,13 +61,11 @@ public class MusicController {
     public ResponseEntity<?> analysisPitchByGenre(@CookieValue(name = JwtProperties.ACCESS_TOKEN) String token, @PathVariable("genre") String genre, @PathVariable("pitchId") Long pitchId) {
         Long userId = jwtTokenProvider.getId(token);
         PitchAnalysisResp result;
-
         try {
             result = musicService.analysisPitchByGenre(userId, genre, pitchId);
         } catch (Exception e) {
             throw AnalysisPitchByGenreException.fromException(e);
         }
-
         return new ResponseEntity<PitchAnalysisResp>(result, HttpStatus.OK);
     }
 
