@@ -26,22 +26,22 @@ public class KaraokeCustomRepositoryImpl implements KaraokeCustomRepository {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<KaraokeDto> search(SearchSongReq param, Pageable pageable) {
+    public Page<KaraokeDto> search(SearchSongReq param, Long userId, Pageable pageable) {
         List<KaraokeDto> songs = query
                 .select(Projections.constructor(KaraokeDto.class,
                         karaoke.tjNum,
                         karaoke.singer,
                         karaoke.title,
                         new CaseBuilder()
-                                .when(likeSong.userId.eq(param.getUserId()))
+                                .when(likeSong.userId.eq(userId))
                                 .then(true)
                                 .otherwise(false)
                 ))
                 .from(karaoke)
                 .leftJoin(likeSong)
-                .on(likeSong.userId.eq(param.getUserId()), likeSong.karaoke.eq(karaoke))
+                .on(likeSong.userId.eq(userId), likeSong.karaoke.eq(karaoke))
                 .where(containsSinger(param.getSinger()), containsTitle(param.getTitle()),
-                        containsKyNum(param.getNum()))
+                        containsKyNum(param.getTjNum()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -50,7 +50,7 @@ public class KaraokeCustomRepositoryImpl implements KaraokeCustomRepository {
                 .select(karaoke.count())
                 .from(karaoke)
                 .where(containsSinger(param.getSinger()), containsTitle(param.getTitle()),
-                        containsKyNum(param.getNum()));
+                        containsKyNum(param.getTjNum()));
 
         return PageableExecutionUtils.getPage(songs, pageable, songSize::fetchOne);
     }

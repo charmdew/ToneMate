@@ -130,6 +130,7 @@ public class MusicServiceImpl implements MusicService {
         return null;
     }
 
+    @Transactional
     @Override
     public PitchAnalysisResp savePitchAnalysis(PitchAnalysis pitchAnalysis) {
 
@@ -165,7 +166,6 @@ public class MusicServiceImpl implements MusicService {
         return resultRespList;
     }
 
-    @Transactional
     @Override
     public TimbreAnalysisResp selectOneTimbreAnalysis(Long timbreId) {
 
@@ -212,6 +212,7 @@ public class MusicServiceImpl implements MusicService {
                 .pitchId(pitchAnalysis.getPitchId()).time(pitchAnalysis.getTime()).build();
     }
 
+    @Transactional
     @Override
     public void deleteResult(String type, Long resultId) {
         // 음색 검사 결과 삭제
@@ -222,6 +223,7 @@ public class MusicServiceImpl implements MusicService {
         }
     }
 
+    @Transactional
     @Override
     public PitchAnalysisResp analysisPitch(Long userId, MultipartFile lowFile, MultipartFile highFile) {
         boolean gender = true;
@@ -258,6 +260,7 @@ public class MusicServiceImpl implements MusicService {
                 .pitchId(pitchAnalysis.getPitchId()).time(pitchAnalysis.getTime()).build();
     }
 
+    @Transactional
     @Override
     public PitchAnalysisResp analysisPitchByGenre(Long userId, String genre, Long pitchId) {
         Genre genreEnum = Genre.fromCode(genre);

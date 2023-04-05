@@ -50,7 +50,7 @@ public class UserController {
 
     @ApiOperation(value = "닉네임 중복 검사", notes = "프로필 변경 시 닉네임 중복 검사하기")
     @GetMapping("/duplicate")
-    public ResponseEntity<?> checkNickname(String nickname) {
+    public ResponseEntity<?> checkNickname(@RequestParam String nickname) {
         if (userService.checkNickname(nickname)) {
             return new ResponseEntity<>(FAIL, HttpStatus.OK);
         }

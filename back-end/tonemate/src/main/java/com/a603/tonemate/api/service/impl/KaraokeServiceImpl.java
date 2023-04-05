@@ -45,8 +45,7 @@ public class KaraokeServiceImpl implements KaraokeService {
 
     @Override
     public KaraokeResp searchSong(SearchSongReq searchSongReq, Pageable pageable, Long userId) {
-        searchSongReq.setUserId(userId);
-        Page<KaraokeDto> songs = karaokeRepository.search(searchSongReq, pageable);
+        Page<KaraokeDto> songs = karaokeRepository.search(searchSongReq, userId, pageable);
         return KaraokeResp.builder()
                 .songs(songs.getContent())
                 .pageSize(songs.getPageable().getPageSize())
