@@ -1,0 +1,6 @@
+.bg-home {
+    background-image: url("../assets/6.png");
+    background-position: center;
+    background-size: cover;
+    opacity: 0.9;
+  }

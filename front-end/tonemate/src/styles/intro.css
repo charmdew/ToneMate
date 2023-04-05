@@ -1,0 +1,71 @@
+.bg-intro-0 {
+  background-image: url("../assets/intro-1.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+}
+.bg-intro-1 {
+  background-image: url("../assets/intro-2.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+}
+.bg-intro-2 {
+  background-image: url("../assets/intro-3.jpg");
+  background-position: center;
+  background-size: cover;
+  opacity: 0.9;
+}
+
+.intro-box {
+  backdrop-filter: blur(20px);
+}
+.arrow {
+  display: block;
+  position: relative;
+  left: 0;
+  top: 0;
+  content: "";
+  width: 40px; /* 사이즈 */
+  height: 40px; /* 사이즈 */
+  border-top: 5px solid rgba(255, 255, 255, 0.7); /* 선 두께 */
+  border-right: 5px solid rgba(255, 255, 255, 0.7); /* 선 두께 */
+
+  animation: blink 2.5s infinite;
+}
+.arrow-up {
+  transform: rotate(-45deg); /* 각도 */
+}
+.arrow-down {
+  transform: rotate(135deg); /* 각도 */
+}
+.arrow:hover {
+  animation: none;
+  cursor: pointer;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+body {
+  overflow: overlay;
+}
+body::-webkit-scrollbar {
+  width: 0.5vw;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 42%, 0.29);
+  border-radius: 100px;
+}
+.scrollable {
+  scroll-behavior: smooth;
+}

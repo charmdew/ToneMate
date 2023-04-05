@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { useUser } from '@/features/auth';
 import { Navbar } from '@/components/Layout';
 import { LoadingFallback } from '@/components/Fallbacks';
+import Layout from '@/components/layout';
+import HalfContainer from '@/components/content/half-container';
+import { useRouter } from 'next/router';
 
 export default function HomePage() {
+  const Router = useRouter();
+
   const { user } = useUser({ redirectTo: '/', redirectIfFound: false });
 
   if (!user || !user.data) {
@@ -21,67 +26,89 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar user={user} />
-        <div className="bg-base-200 px-6 pt-16">
-          <Link href="/inspect/vocal-color">
-            <div className="card w-full bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">음색 검사</h2>
-                <p>
-                  좋아하는 노래를 부르세요
-                  <br />
-                  비슷한 가수와
-                  <br />
-                  어울리는 노래를
-                  <br />
-                  알려드려요
-                </p>
+        <Layout>
+          <HalfContainer>
+            <div className="flex h-full w-full flex-row">
+              <div className="bg-home flex h-full w-full flex-row items-end justify-end lg:w-140">
+                <div className="bg-trasparent my-5 flex grow flex-col items-start justify-center lg:hidden">
+                  <div className="mx-3 my-2 flex flex-row rounded-full border border-black px-2">
+                    <p className="font-alatsi text-sm text-red-600 ">TONEMATE</p>
+                  </div>
+                  <div className="mx-3 flex flex-col  px-2 ">
+                    <p className="font-nanum text-xl text-red-600">톤메이트와 함께</p>
+                    <p className="font-nanum text-xl text-red-600">
+                      내 목소리에 딱 맞는 노래 찾자!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="hidden grow flex-col items-start justify-center bg-gradient-to-r from-violet-500 to-fuchsia-500 lg:flex">
+                <div className="mx-3 my-2 flex flex-row rounded-full border border-black px-2">
+                  <p className="font-alatsi text-white ">TONEMATE</p>
+                </div>
+                <div className="mx-3 flex flex-col  px-2 ">
+                  <p className="font-nanum text-3xl text-white">톤메이트와 함께</p>
+                  <p className="font-nanum text-3xl text-white">내 목소리에 딱 맞는 노래 찾자!</p>
+                </div>
               </div>
             </div>
-          </Link>
-          <Link href="/inspect/vocal-range">
-            <div className="card w-full bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">음역대 검사</h2>
-                <p>
-                  할 수 있는 한
-                  <br />
-                  가장 높게, 가장 낮게
-                  <br />
-                  음을 내보세요
-                  <br />
-                  음역대를 알려드려요
-                </p>
+          </HalfContainer>
+          <HalfContainer>
+            <div className="m-3 flex flex-row">
+              <p className="text-2xl text-white">TONEMATE 서비스 바로가기 </p>
+            </div>
+            <div className="flex w-full grow snap-x flex-row flex-nowrap items-center justify-start overflow-x-auto scrollbar-hide ">
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/inspectation/vocal-color')}
+                >
+                  <p className="text-2xl text-white">음색 검사</p>
+                </button>
+              </div>
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center  rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/inspectation/vocal-range')}
+                >
+                  <p className="text-2xl text-white">음역대 검사</p>
+                </button>
+              </div>
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/inspectation/result-list')}
+                >
+                  <p className="text-2xl text-white">검사 결과</p>
+                </button>
+              </div>
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/search')}
+                >
+                  <p className="text-2xl text-white">노래 검색</p>
+                </button>
+              </div>
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/user/music-list')}
+                >
+                  <p className="text-2xl text-white">애창곡 리스트</p>
+                </button>
+              </div>
+              <div className="mx-3 h-5/6 w-4/5 flex-shrink-0 grow-0 basis-auto snap-center rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-2 lg:w-1/4">
+                <button
+                  className="h-full w-full rounded-xl bg-black"
+                  onClick={() => Router.push('/about')}
+                >
+                  <p className="text-2xl text-white">서비스</p>
+                </button>
               </div>
             </div>
-          </Link>
-          <Link href="/inspect/results">
-            <div className="card w-full bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">검사 결과</h2>
-                <p>
-                  지금까지의
-                  <br />
-                  검사 결과가 어땠는지
-                  <br />
-                  확인해보세요
-                </p>
-              </div>
-            </div>
-          </Link>
-          <Link href="/inspect/search">
-            <div className="card w-full bg-base-100 shadow-xl">
-              <div className="card-body">
-                <h2 className="card-title">노래 검색</h2>
-                <p>
-                  노래방 인기 순위에서
-                  <br />
-                  부를 노래를 찾아보세요
-                </p>
-              </div>
-            </div>
-          </Link>
-        </div>
+          </HalfContainer>
+        </Layout>
       </main>
     </>
   );
