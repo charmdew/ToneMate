@@ -35,9 +35,6 @@ spring:
     port: 6379
     password: ${REDIS_PASSWORD}
   jpa:
-    hibernate:
-      ddl-auto: update
-      use-new-id-generator-mappings: false
     open-in-view: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -98,7 +97,7 @@ public class MusicServiceImpl implements MusicService {
                     .similarity3(topSingerDetails.get(2).getSimilarityPercent())
                     .similarity4(topSingerDetails.get(3).getSimilarityPercent())
                     .similarity5(topSingerDetails.get(4).getSimilarityPercent())
-                    .time(LocalDateTime.now()).build();
+                    .build();
 
             // 분석 결과 데이터베이스에 저장
             TimbreAnalysis saveTimbreAnalysis = timbreAnalysisRepository.save(newTimbreAnalysis);
@@ -133,7 +132,7 @@ public class MusicServiceImpl implements MusicService {
     public PitchAnalysisResp savePitchAnalysis(PitchAnalysis pitchAnalysis) {
 
         PitchAnalysis newPitchAnalysis = PitchAnalysis.builder().pitchId(pitchAnalysis.getPitchId())
-                .userId(pitchAnalysis.getUserId()).time(LocalDateTime.now()).build();
+                .userId(pitchAnalysis.getUserId()).build();
 
         PitchAnalysis savePitchAnalysis = pitchAnalysisRepository.save(newPitchAnalysis);
 
@@ -263,7 +262,7 @@ public class MusicServiceImpl implements MusicService {
     @Override
     public PitchAnalysisResp analysisPitchByGenre(Long userId, String genre, Long pitchId) {
         Genre genreEnum = Genre.fromCode(genre);
-   
+
         PitchAnalysis pitchAnalysis = pitchAnalysisRepository.findByPitchIdAndUserId(pitchId, userId).orElseThrow();
 
         List<Long> possibleList = convertStringToLongList(pitchAnalysis.getPossibleList());
@@ -285,7 +284,7 @@ public class MusicServiceImpl implements MusicService {
     private List<Long> convertStringToLongList(String str) {
         List<Long> convertList = new ArrayList<>();
         if ("[]".equals(str)) return convertList;
-        
+
         String[] stringArray = str.substring(1, str.length() - 1).split(",");
         for (String s : stringArray) {
             String trimmed = s.trim();

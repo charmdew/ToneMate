@@ -10,7 +10,6 @@ public class KaraokeTop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long karaokeTopId;
-
     @OneToOne
     @JoinColumn(name = "karaoke_id")
     private Karaoke karaoke;
