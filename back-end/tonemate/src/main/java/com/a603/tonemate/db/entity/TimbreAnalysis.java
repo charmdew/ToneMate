@@ -20,18 +20,18 @@ public class TimbreAnalysis {
     private Long timbreId;
     private Long userId;
 
-    private float mfccMean;
-    private float stftMean;
-    private float zcrMean;
-    private float spcMean;
-    private float sprMean;
-    private float rmsMean;
-    private float mfccVar;
-    private float stftVar;
-    private float zcrVar;
-    private float spcVar;
-    private float sprVar;
-    private float rmsVar;
+    private Float mfccMean;
+    private Float stftMean;
+    private Float zcrMean;
+    private Float spcMean;
+    private Float sprMean;
+    private Float rmsMean;
+    private Float mfccVar;
+    private Float stftVar;
+    private Float zcrVar;
+    private Float spcVar;
+    private Float sprVar;
+    private Float rmsVar;
 
     private Long singer1;
     private Long singer2;
@@ -39,20 +39,20 @@ public class TimbreAnalysis {
     private Long singer4;
     private Long singer5;
 
-    private float similarity1;
-    private float similarity2;
-    private float similarity3;
-    private float similarity4;
-    private float similarity5;
+    private Float similarity1;
+    private Float similarity2;
+    private Float similarity3;
+    private Float similarity4;
+    private Float similarity5;
 
     @CreatedDate
     private LocalDateTime time;
 
     @Builder
-    public TimbreAnalysis(Long timbreId, Long userId, float mfccMean, float stftMean, float zcrMean, float spcMean, float sprMean, float rmsMean,
-                          float mfccVar, float stftVar, float zcrVar, float spcVar, float sprVar, float rmsVar,
+    public TimbreAnalysis(Long timbreId, Long userId, Float mfccMean, Float stftMean, Float zcrMean, Float spcMean, Float sprMean, Float rmsMean,
+                          Float mfccVar, Float stftVar, Float zcrVar, Float spcVar, Float sprVar, Float rmsVar,
                           Long singer1, Long singer2, Long singer3, Long singer4, Long singer5,
-                          float similarity1, float similarity2, float similarity3, float similarity4, float similarity5, LocalDateTime time) {
+                          Float similarity1, Float similarity2, Float similarity3, Float similarity4, Float similarity5, LocalDateTime time) {
         this.timbreId = timbreId;
         this.userId = userId;
 

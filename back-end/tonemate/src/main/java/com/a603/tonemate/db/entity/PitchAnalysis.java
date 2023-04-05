@@ -24,8 +24,8 @@ public class PitchAnalysis {
     private Long pitchId;
     private Long userId;
 
-    private int octaveLow;
-    private int octaveHigh;
+    private Integer octaveLow;
+    private Integer octaveHigh;
 
     @CreatedDate
     private LocalDateTime time;
@@ -39,7 +39,7 @@ public class PitchAnalysis {
 
 
     @Builder
-    public PitchAnalysis(Long pitchId, Long userId, int octaveLow, int octaveHigh, LocalDateTime time,
+    public PitchAnalysis(Long pitchId, Long userId, Integer octaveLow, Integer octaveHigh, LocalDateTime time,
                          String possibleList, String normalList, String impossibleList) {
         super();
         this.pitchId = pitchId;
